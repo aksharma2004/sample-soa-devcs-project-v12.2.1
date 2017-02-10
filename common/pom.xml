@@ -240,9 +240,10 @@
                         <!-- aliases for these variables to oracle.home and soa.oracle.home -->
                         <oracle.home>${soaOracleHome}</oracle.home>
                         <soa.oracle.home>${soaOracleHome}</soa.oracle.home>
-
                         <soamds.apps.home>${appHome}/mds</soamds.apps.home>
                         <!-- End ~ These properties are used by MDS during compilation      -->
+
+                        <javax.net.ssl.trustStore>${appHome}/certificates/myTrustStore.jks</javax.net.ssl.trustStore>
                     </configuration>
 
                     <!-- extensions=true is needed to use the custom sar packaging type     -->
