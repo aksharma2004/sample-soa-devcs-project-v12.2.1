@@ -21,7 +21,7 @@
           location="oramds:/apps/SOA/WSDLs/SubtractionBpel.wsdl"
           importType="wsdl"/>
   <import namespace="http://xmlns.oracle.com/MySampleSoaProject/MultiplicationComposite/MultiplicationBpel"
-          location="https://DemoCertFor_base_domain:8085/soa-infra/services/default/MultiplicationComposite/apps/SOA/WSDLs/MultiplicationBpel.wsdl"
+          location="https://DemoCertFor_base_domain:7005/soa-infra/services/default/MultiplicationComposite/apps/SOA/WSDLs/MultiplicationBpel.wsdl"
           importType="wsdl"/>
   <service name="calculatorbpel_client_ep" ui:wsdlLocation="WSDLs/CalculatorBpel.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/MySampleSoaProject/CalculatorComposite/CalculatorBpel#wsdl.interface(CalculatorBpel)"/>
@@ -36,7 +36,7 @@
         <interface.wsdl interface="http://xmlns.oracle.com/MySampleSoaProject/CalculatorComposite/CalculatorBpel#wsdl.interface(CalculatorBpel)"/>
       </service>
       <reference name="MultiplicationComposite"
-                 ui:wsdlLocation="https://DemoCertFor_base_domain:8085/soa-infra/services/default/MultiplicationComposite/apps/SOA/WSDLs/MultiplicationBpel.wsdl">
+                 ui:wsdlLocation="https://DemoCertFor_base_domain:7005/soa-infra/services/default/MultiplicationComposite/apps/SOA/WSDLs/MultiplicationBpel.wsdl">
         <interface.wsdl interface="http://xmlns.oracle.com/MySampleSoaProject/MultiplicationComposite/MultiplicationBpel#wsdl.interface(MultiplicationBpel)"/>
       </reference>
       <reference name="AdditionComposite"
@@ -54,7 +54,7 @@
              ui:wsdlLocation="oramds:/apps/SOA/WSDLs/AdditionBpel.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/MySampleSoaProject/AdditionComposite/AdditionBpel#wsdl.interface(AdditionBpel)"/>
     <binding.ws port="http://xmlns.oracle.com/MySampleSoaProject/AdditionComposite/AdditionBpel#wsdl.endpoint(additionbpel_client_ep/AdditionBpel_pt)"
-                location="http://localhost:8001/soa-infra/services/default/AdditionComposite/additionbpel_client_ep?WSDL"
+                location="http://localhost:7004/soa-infra/services/default/AdditionComposite/additionbpel_client_ep?WSDL"
                 soapVersion="1.1">
       <property name="weblogic.wsee.wsat.transaction.flowOption" type="xs:string" many="false">WSDLDriven</property>
     </binding.ws>
@@ -63,13 +63,13 @@
              ui:wsdlLocation="oramds:/apps/SOA/WSDLs/SubtractionBpel.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/MySampleSoaProject/SubtractionComposite/SubtractionBpel#wsdl.interface(SubtractionBpel)"/>
     <binding.ws port="http://xmlns.oracle.com/MySampleSoaProject/SubtractionComposite/SubtractionBpel#wsdl.endpoint(subtractionbpel_client_ep/SubtractionBpel_pt)"
-                location="http://localhost:8001/soa-infra/services/default/SubtractionComposite/subtractionbpel_client_ep?WSDL"
+                location="http://localhost:7004/soa-infra/services/default/SubtractionComposite/subtractionbpel_client_ep?WSDL"
                 soapVersion="1.1">
       <property name="weblogic.wsee.wsat.transaction.flowOption" type="xs:string" many="false">WSDLDriven</property>
     </binding.ws>
   </reference>
   <reference name="MultiplicationComposite"
-             ui:wsdlLocation="https://DemoCertFor_base_domain:8085/soa-infra/services/default/MultiplicationComposite/apps/SOA/WSDLs/MultiplicationBpel.wsdl">
+             ui:wsdlLocation="https://DemoCertFor_base_domain:7005/soa-infra/services/default/MultiplicationComposite/apps/SOA/WSDLs/MultiplicationBpel.wsdl">
     <interface.wsdl interface="http://xmlns.oracle.com/MySampleSoaProject/MultiplicationComposite/MultiplicationBpel#wsdl.interface(MultiplicationBpel)"/>
     <binding.ws port="" location=""/>
   </reference>
