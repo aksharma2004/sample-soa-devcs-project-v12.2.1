@@ -315,34 +315,35 @@
         <profile>
             <id>RemoteMavenRepository</id>
 
-            <!-- Option 1: Leave the <activeByDefault> tag as is.  This     -->
+            <!-- Option 1: Make the <activeByDefault> tag as true. This     -->
             <!-- will cause Maven to always access the remote repository    -->
             <!-- (either the DevCS repository or maven.oracle.com;          -->
             <!-- whichever you configure). This will always work, but it    -->
             <!-- will potentially be slow because it will be making network -->
             <!-- calls every so often to ensure the repo is up-to-date.     -->
             <!--                                                            -->
-            <!-- Option 2: Remove the <activeByDefault> tag and require it  -->
-            <!-- to be activated manually. This will require initial builds -->
+            <!-- Option 2: Make the <activeByDefault> tag false and require -->
+            <!-- it to be enabled manually. This will require the 1st build -->
             <!-- to activate this profile in order to download the binaries -->
             <!-- into the local repository.  Subsequent builds need not     -->
             <!-- activate the profile and will benefit from not having to   -->
             <!-- make remote calls.                                         -->
             <!--                                                            -->
-            <!-- If in doubt, leave it as is.                               -->
+            <!-- Note that Hudson build should always activate this profile -->
             <activation>
-                <activeByDefault>true</activeByDefault>
+                <activeByDefault>false</activeByDefault>
             </activation>
 
             <!-- Note that you need to add a <server> tag to your           -->
             <!-- settings.xml that includes your repository username and    -->
             <!-- password.  It must also have an <id> that matches the <id> -->
             <!-- tag used here. Without this <server> tag, you will likely  -->
-            <!--  see Authentication Failures when running Maven            -->
+            <!-- see Authentication Failures when running Maven             -->
             <repositories>
                 <repository>
                     <id>MyMavenRepository</id>
                     <name>Remote Maven Repository for your DevCS project</name>
+                    <!-- CHANGE ME! -->
                     <url>YOUR_MAVEN_REPOSITORY_URL</url>
                     <layout>default</layout>
                 </repository>
@@ -352,6 +353,7 @@
                 <pluginRepository>
                     <id>MyMavenRepository</id>
                     <name>Remote Maven Plugin Repository for your DevCS project</name>
+                    <!-- CHANGE ME! -->
                     <url>YOUR_MAVEN_REPOSITORY_URL</url>
                     <layout>default</layout>
                 </pluginRepository>
@@ -463,6 +465,22 @@
                             </execution>
                         </executions>
                     </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.gmaven</groupId>
+                        <artifactId>groovy-maven-plugin</artifactId>
+                        <version>2.0</version>
+                        <executions>
+                            <execution>
+                                <phase>pre-integration-test</phase>
+                                <goals><goal>execute</goal></goals>
+                                <configuration>
+                                    <source>
+                                        log.info("soaSkipDeploy profile activated, so skipping deploy and tests")
+                                    </source>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
                 </plugins>
             </build>
         </profile>
@@ -470,7 +488,7 @@
             <id>soaSkipTest</id>
             <activation>
                 <property>
-                    <name>soaSkipTest</name>
+                    <name>soaSkipTests</name>
                 </property>
             </activation>
             <build>
@@ -483,6 +501,22 @@
                             <execution>
                                 <id>default-test</id>
                                 <phase/>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>org.codehaus.gmaven</groupId>
+                        <artifactId>groovy-maven-plugin</artifactId>
+                        <version>2.0</version>
+                        <executions>
+                            <execution>
+                                <phase>pre-integration-test</phase>
+                                <goals><goal>execute</goal></goals>
+                                <configuration>
+                                    <source>
+                                        log.info("soaSkipTests profile activated, so skipping tests")
+                                    </source>
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
